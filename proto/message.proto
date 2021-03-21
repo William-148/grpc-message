@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package grpc;
+
+option go_package = "https://github.com/William-148/grpc-message/proto";
+
+message Message {
+    string name = 1;
+    string location = 2;
+    int32  age = 3;
+    string infectedtype = 4;
+    string state = 5;
+    string service = 6;
+}
+
+message Confirmation {
+    enum Status {
+        Error = 0;
+        Successful = 1;
+    }
+
+    string message = 1;
+    Status status = 2;
+}
+
+
+service Messenger {
+    rpc registerMessage (Message) returns (Confirmation);
+}
