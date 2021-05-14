@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package message;
+option go_package = "/proto";
+
+message Message {
+    string name = 1;
+    string location = 2;
+    string gender = 3;
+    int32  age = 4;
+    string vaccine_type = 5;
+    string service = 6;
+}
+
+message Confirmation {
+    enum Status {
+        Error = 0;
+        Successful = 1;
+    }
+
+    string message = 1;
+    Status status = 2;
+}
+
+
+service Messenger {
+    rpc registerMessage (Message) returns (Confirmation);
+}
